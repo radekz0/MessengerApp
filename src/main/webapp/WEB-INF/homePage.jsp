@@ -5,24 +5,35 @@
 <html>
 <body>
 <div>
+    <textarea rows="10" cols="50" disabled style="background-color: aliceblue">
+    <c:forEach var="tempMessage" items="${messages}">
+    ${tempMessage.message}
+    </c:forEach>
+    </textarea>
+
+</div>
+<div>
     <form:form action="sendMessage" modelAttribute="message" method="post">
         <form:hidden path="id"/>
         <table>
             <tbody>
+            <c:url var="deleteLink" value="/deleteAll">
+            </c:url>
             <tr>
                 <td><label></label></td>
                 <td><form:input path="message"/></td>
             </tr>
             <tr>
                 <td><label></label></td>
-                <td><input type="submit" value="Save"/></td>
+                <td><input type="submit" value="Send"/></td>
             </tr>
+            <td>
+                <a href="${deleteLink}"
+                   onclick="if(!(confirm('Are you sure you want to delete all messages?'))) return false">Delete</a>
+            </td>
             </tbody>
         </table>
     </form:form>
-    <p>
-        <a href="/">Back to home</a>
-    </p>
 </div>
 </body>
 </html>

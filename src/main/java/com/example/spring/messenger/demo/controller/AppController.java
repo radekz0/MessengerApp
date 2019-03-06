@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class AppController {
 
@@ -18,6 +20,8 @@ public class AppController {
     @GetMapping("/")
     public String homePage(Model model){
         MessageEntity messageEntity = new MessageEntity();
+        List<MessageEntity> messages = messageDao.getMessages();
+        model.addAttribute("messages",messages);
         model.addAttribute("message", messageEntity);
         return "homePage";
     }
@@ -25,6 +29,12 @@ public class AppController {
     @PostMapping("/sendMessage")
     public String sendMessage(@ModelAttribute("message") MessageEntity messageEntity){
         messageDao.addMessage(messageEntity);
+        return "redirect:/";
+    }
+
+    @PostMapping("/deleteAll")
+    public String deleteMessages(){
+        messageDao.deleteAllMessages();
         return "redirect:/";
     }
 }
