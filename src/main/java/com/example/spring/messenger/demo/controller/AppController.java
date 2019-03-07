@@ -2,6 +2,7 @@ package com.example.spring.messenger.demo.controller;
 
 import com.example.spring.messenger.demo.dao.MessageDaoImpl;
 import com.example.spring.messenger.demo.entity.MessageEntity;
+import com.example.spring.messenger.demo.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,9 @@ public class AppController {
     @Autowired
     MessageDaoImpl messageDao;
 
+    @Autowired
+    MessageRepository messageRepository;
+
     @GetMapping("/")
     public String homePage(Model model){
         MessageEntity messageEntity = new MessageEntity();
@@ -28,7 +32,7 @@ public class AppController {
 
     @PostMapping("/sendMessage")
     public String sendMessage(@ModelAttribute("message") MessageEntity messageEntity){
-        messageDao.addMessage(messageEntity);
+        messageRepository.save(messageEntity);
         return "redirect:/";
     }
 

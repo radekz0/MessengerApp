@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @EnableJpaAuditing
 @EnableJpaRepositories(basePackageClasses= {MessageRepository.class})
-
 public class DemoApplication {
 
     public static void main(String[] args) {
