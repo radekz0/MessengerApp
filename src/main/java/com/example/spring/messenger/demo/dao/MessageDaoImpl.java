@@ -1,11 +1,11 @@
 package com.example.spring.messenger.demo.dao;
 
+import com.example.spring.messenger.demo.repository.MessageRepository;
 import com.example.spring.messenger.demo.entity.MessageEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManagerFactory;
 import java.util.List;
@@ -16,21 +16,21 @@ public class MessageDaoImpl implements MessageDao {
     @Autowired
     private EntityManagerFactory entityManagerFactory;
 
+    @Autowired
+    private MessageRepository messageRepository;
+
     @Override
     public void addMessage(MessageEntity messageEntity) {
-        Session session = entityManagerFactory.unwrap(SessionFactory.class).openSession();
-//        CriteriaBuilder builder = session.getCriteriaBuilder();
-//        CriteriaQuery criteria = builder.createQuery(UserDetails.class);
-//        Root contactRoot = criteria.from(UserDetails.class);
-//        criteria.select(contactRoot);
-        session.saveOrUpdate(messageEntity);
+//        Session session = entityManagerFactory.unwrap(SessionFactory.class).openSession();
+//        session.saveOrUpdate(messageEntity);
+        messageRepository.save(messageEntity);
     }
 
     @Override
     public void deleteAllMessages() {
-        Session session = entityManagerFactory.unwrap(SessionFactory.class).openSession();
-        String query = "DELETE FROM MessageEntity";
-        session.createQuery(query,MessageEntity.class).executeUpdate();
+//        Session session = entityManagerFactory.unwrap(SessionFactory.class).openSession();
+//        String query = "DELETE FROM MessageEntity";
+//        session.createQuery(query,MessageEntity.class).executeUpdate();
     }
 
     @Override
