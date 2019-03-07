@@ -5,7 +5,13 @@
 <html>
 <body>
 <div>
-    <textarea rows="10" cols="50" disabled style="background-color: aliceblue">
+    <%--Trying to keep scroll on bottom of the textarea--%>
+    <script language="JavaScript">
+        var textarea = document.getElementById('myTextarea');
+        textarea.scrollTop = textarea.scrollHeight;
+    </script>
+
+    <textarea id="myTextarea" rows="10" cols="50" disabled style="background-color: aliceblue">
     <c:forEach var="tempMessage" items="${messages}">
     ${tempMessage.message}
     </c:forEach>

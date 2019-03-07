@@ -14,30 +14,21 @@ import java.util.List;
 public class MessageDaoImpl implements MessageDao {
 
     @Autowired
-    private EntityManagerFactory entityManagerFactory;
-
-    @Autowired
     private MessageRepository messageRepository;
 
     @Override
     public void addMessage(MessageEntity messageEntity) {
-//        Session session = entityManagerFactory.unwrap(SessionFactory.class).openSession();
-//        session.saveOrUpdate(messageEntity);
         messageRepository.save(messageEntity);
     }
 
     @Override
     public void deleteAllMessages() {
-//        Session session = entityManagerFactory.unwrap(SessionFactory.class).openSession();
-//        String query = "DELETE FROM MessageEntity";
-//        session.createQuery(query,MessageEntity.class).executeUpdate();
+        messageRepository.deleteAll();
     }
 
     @Override
     public List<MessageEntity> getMessages() {
-        Session session = entityManagerFactory.unwrap(SessionFactory.class).openSession();
-        String query = "SELECT a FROM MessageEntity a ORDER BY a.id";
-        List<MessageEntity> messages = session.createQuery(query, MessageEntity.class).getResultList();
-        return messages;
+        List<MessageEntity> messageList = messageRepository.findAll();
+        return messageList;
     }
 }

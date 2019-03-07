@@ -8,6 +8,4 @@ public interface MessageDao {
     void addMessage(MessageEntity messageEntity);
     void deleteAllMessages();
     List<MessageEntity> getMessages();
-
-
 }

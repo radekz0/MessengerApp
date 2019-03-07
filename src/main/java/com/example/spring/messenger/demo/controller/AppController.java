@@ -1,5 +1,6 @@
 package com.example.spring.messenger.demo.controller;
 
+//import com.example.spring.messenger.demo.dao.MessageDaoImpl;
 import com.example.spring.messenger.demo.dao.MessageDaoImpl;
 import com.example.spring.messenger.demo.entity.MessageEntity;
 import com.example.spring.messenger.demo.repository.MessageRepository;
@@ -18,9 +19,6 @@ public class AppController {
     @Autowired
     MessageDaoImpl messageDao;
 
-    @Autowired
-    MessageRepository messageRepository;
-
     @GetMapping("/")
     public String homePage(Model model){
         MessageEntity messageEntity = new MessageEntity();
@@ -31,12 +29,14 @@ public class AppController {
     }
 
     @PostMapping("/sendMessage")
-    public String sendMessage(@ModelAttribute("message") MessageEntity messageEntity){
-        messageRepository.save(messageEntity);
+    public String sendMessage(@ModelAttribute("message") String msg){
+        MessageEntity messageEntity = new MessageEntity();
+        messageEntity.setMessage(msg);
+        messageDao.addMessage(messageEntity);
         return "redirect:/";
     }
 
-    @PostMapping("/deleteAll")
+    @GetMapping("/deleteAll")
     public String deleteMessages(){
         messageDao.deleteAllMessages();
         return "redirect:/";
