@@ -1,9 +1,7 @@
 package com.example.spring.messenger.demo.controller;
 
-//import com.example.spring.messenger.demo.dao.MessageDaoImpl;
 import com.example.spring.messenger.demo.dao.MessageDaoImpl;
 import com.example.spring.messenger.demo.entity.MessageEntity;
-import com.example.spring.messenger.demo.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
