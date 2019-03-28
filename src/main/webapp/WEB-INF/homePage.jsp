@@ -58,7 +58,7 @@
         var textarea = document.getElementById('myTextarea');
         textarea.scrollTop = textarea.scrollHeight;
     </script>
-        <h3 style="color: #ff5a77"> Messenger App</h3>
+        <h3 style="color: red"> Messenger App</h3>
     <textarea id="myTextarea" rows="40" cols="66" disabled>
     <c:forEach var="tempMessage" items="${messages}">
     ${tempMessage.message}
