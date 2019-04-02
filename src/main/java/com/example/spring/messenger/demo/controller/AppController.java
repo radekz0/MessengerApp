@@ -39,4 +39,9 @@ public class AppController {
         messageDao.deleteAllMessages();
         return "redirect:/";
     }
+
+    @GetMapping("/login")
+    public String loginPage(){
+        return "login";
+    }
 }
